@@ -1,0 +1,26 @@
+.addressform{
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 350px;
+  }
+  .address{
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+        
+  }
+  .address:hover{
+    outline: auto rgb(21, 135, 241);
+   
+  }
+  .addressbody{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .addresspage{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+  }

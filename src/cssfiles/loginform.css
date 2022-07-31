@@ -1,0 +1,53 @@
+.form-container{
+    margin-top: 50px;
+    display: grid;
+    justify-content: center;
+    position: fixed;
+    
+  }
+  .loginform{
+    /* border:solid; */
+    width: 500px;
+    height: max-content;
+    padding-bottom: 60px;
+    /* padding-left: 60px; */
+    left      : 50%;
+      top       : 25vh;
+      position  : absolute;
+      transform : translate(-50%, -50%);
+      border-radius: 10%;
+      /* position: relative; */
+  }
+  /* .accform{
+    margin-top: 50px;
+    display: grid;
+    justify-content: center;
+  } */
+  .tc{
+    margin-top: 16px;
+    /* position: relative; */
+  }
+  .login-signup{
+    height:100vh;
+    width:800px;
+    position: absolute;
+  }
+  .lstab{
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .forgotpwd{
+    display : flex;
+    justify-content: center;
+    margin: 20px;
+    text-align: center;
+  }
+  .forgotpwd1{
+   
+    margin: 20px;
+    text-align: center;
+  }
+  .otpboxes{
+    display: flex;
+    justify-content: center;
+  }

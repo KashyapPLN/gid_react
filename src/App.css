@@ -1,38 +1,139 @@
-.App {
-  text-align: center;
+@import url("./cssfiles/loginform.css");
+@import url("./cssfiles/menupage.css");
+@import url("./cssfiles/address.css");
+@import url("./cssfiles/searchbar.css");
+@import url("./cssfiles/dessertmenu.css");
+@import url("./cssfiles/search.css");
+
+
+.gidlogo{
+  height : 60px;
+  width:60px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.cards{
+  display: grid;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: relative;
+}
+.slides{
+  position: relative;
+ 
+  height: 600px;
+  /* object-fit: contain; */
+
+}
+.slide-pic{
+  height:600px;
+ object-fit: cover;
+
+
+}
+.slide-txt{
+  color: rgb(25 118 210);
+  font-size: 2000;
+}
+.slide-desc{
+  color: rgb(255 108 0 / 1);
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.tpickslist {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+   /* justify-content: space-evenly;  */
+  /* flex-wrap: wrap; */
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-logo{
+  height: 30px;
+  /* width: 150px; */
+  object-fit: cover;
+  margin-top: 20px;
+}
+.donut{
+  height : 60px;
+  width:350px;
+}
+.custom-card{
+  height:450px;
+   width:16rem;
+ 
+   
+}
+.poster{
+  object-fit: cover;
+  width:100%;
+  height: 200px;
+}
+
+.top-picks{
+  margin-top: 30px;
+  /* max-width: 800px; */
+  /* padding-bottom: 16px; */
+  
+}
+.buttons{
+  display: grid;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.price{
+  color: gray;
+  font-weight :600;
+  
+}
+.offer{
+  font-weight :600;
+  color: rgba(52, 151, 243, 0.993);
+}
+
+.question{
+  font-weight: bold;
+  font-size: large;
+}
+.custom-footer{
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  text-align: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.footer-txt{
+  /* padding :16px; */
+  color: black;
+  padding-top: 20px;
+}
+
+.headmenu{
+  display:flex;
+  flex-wrap: wrap;
+  position: static;
+  background-image: url(background.jpg);
+}
+.footer-disp{
+  background-image: url(background.jpg);
+}
+
+
+/* .searchButton{
+  color:inherit;
+} */
+.head-end{
+display: flex;
+justify-content: end;
+margin-right: 40px;
+
+}
+.explore{
+  margin: 60px;
+  display: flex;
+  justify-content: center;
+}
+.custom-filters{
+  margin-right: 200px;
+ 
 }
