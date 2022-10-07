@@ -18,8 +18,10 @@ import { Container } from "@mui/system";
 
 export default function Footer(){
     return(
-     
-        <AppBar className="footer-disp" position="fixed" sx={{ top: 'auto', bottom: 0,height:'180px'}}>
+     <div className="mt-5" 
+  style={{overflow:'hidden',top: 'auto', bottom: 0,height:'180px',width:'100%'}}
+     >
+        <AppBar className="footer-disp" position="fixed" sx={{top: 'auto', bottom: 0,height:'180px',backgroundColor:'#e1e1e1'}}>
         <div className="custom-footer">
             <Container >
             <Button  variant="text" aria-label="contact Us">
@@ -55,6 +57,6 @@ export default function Footer(){
 
 </div>
       </AppBar>
- 
+      </div>
     )
 }

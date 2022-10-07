@@ -76,16 +76,19 @@
 
 .cart{
   margin-right: 40px;
+  
 }
+
 
 .total_item{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   padding-top: 16px;
-  
+  background-color: rgb(63 199 12 / 26%);
+  color: green;
 }
 
 .cart_item{
@@ -118,11 +121,11 @@
 }
 
 .finalCart{
-  padding-top: 16px;
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
   width: auto;
-
+line-height: auto;
 
 }
 .navCart{
@@ -142,3 +145,33 @@
   width: auto;
 
 }
+
+.checkout_cart{
+width: 400px;
+border: none;
+margin-left: 100px;
+
+}
+
+
+.signup_msg{
+position: absolute;
+top: 30px;
+left: 20px;
+
+}
+
+.paymentGW{
+
+  display:flex;
+  justify-content: center;
+  margin-top: 40px;
+  
+  
+}
+.p_orders{
+display:flex;
+align-items: stretch;
+justify-content: space-between;
+}
+

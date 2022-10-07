@@ -1,11 +1,11 @@
 import * as React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useState } from "react";
-import menuList from './DessertsData.json';
+// import menuList from './DessertsData.json';
 import { useCallback } from 'react';
 
 
-export function CategoryFilterList({handleFilterList}) {
+export function CategoryFilterList({handleFilterList,menuList}) {
   const rootCategoryList = [
     {
       "dessert_item_name": "Pastries",

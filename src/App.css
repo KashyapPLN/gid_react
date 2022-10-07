@@ -5,6 +5,9 @@
 @import url("./cssfiles/dessertmenu.css");
 @import url("./cssfiles/search.css");
 
+.body{
+  font-family: 'Roboto', sans-serif !important;
+}
 
 .gidlogo{
   height : 60px;
@@ -18,16 +21,35 @@
 }
 .slides{
   position: relative;
- 
+ width: 70vw;
   height: 600px;
   /* object-fit: contain; */
 
 }
+.side-slides{
+  position: relative; 
+  height: 600px;
+  width: 25vw;
+}
 .slide-pic{
-  height:600px;
- object-fit: cover;
+  height:100%;
+  width: 100%;
+ object-fit:fill;
 
 
+}
+.side-slide-pic{
+  /* height:100%; */
+  width: 100%;
+ object-fit:fill;
+
+
+}
+.carousel-control-next-icon{
+  margin-left: 30px;
+}
+.carousel-control-prev-icon{
+  margin-right: 30px;
 }
 .slide-txt{
   color: rgb(25 118 210);
@@ -112,11 +134,15 @@
   display:flex;
   flex-wrap: wrap;
   position: static;
-  background-image: url(background.jpg);
+   /* background-image: url(background.jpg); */
 }
-.footer-disp{
-  background-image: url(background.jpg);
-}
+/* .footer-disp{
+ position: static;
+ bottom: 0;
+ left: 0;
+ right: 0;
+
+} */
 
 
 /* .searchButton{
@@ -137,3 +163,71 @@ margin-right: 40px;
   margin-right: 200px;
  
 }
+
+.custom-homeCard{
+  height: 350px;
+  width: 300px;
+  border: none;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  border-radius: none;
+/* box-shadow: rgba(0, 0, 0, 0.19) 10px 10px 20px, rgba(0, 0, 0, 0.23) 10px 6px 6px; */
+  text-align: start;
+}
+.custom-card-img{
+
+  height: 250px;
+  width: 300px;
+  object-fit: cover;
+  position: relative;
+  vertical-align: top;
+  border-radius: 8%;
+ 
+  /* box-shadow: rgba(0, 0, 0, 0.19) 10px 10px 20px, rgba(0, 0, 0, 0.23) 10px 6px 6px; */
+}
+/* .custom-card-img:hover{
+ 
+} */
+
+.custom-card-btn{
+  
+  /* align-items: baseline; */
+  justify-content: space-between;
+place-items: center;
+display: flex;
+flex-direction: column;
+/* z-index: 1; */
+position: absolute;
+bottom: 0;
+right: 0;
+width: 100%;
+height: 100%;
+flex-direction: row-reverse;
+padding-top: 100px;
+padding-right: 10px;
+
+
+}
+.tryNowbtn{
+  width: 30px;
+  height: 30px;
+  
+}
+
+
+/* .custom-homeCard :hover + .custom-card-text{
+
+} */
+.productDetails{
+  background-position-x: right;
+  background-position-y: bottom;
+}
+
+.custom-card .custom-card-title :hover{
+transform: translateY(-600px);
+}
+.slides_Split{
+  display: flex;
+ justify-content: space-around;
+}
+

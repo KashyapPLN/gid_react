@@ -31,10 +31,13 @@
     height:100vh;
     width:800px;
     position: absolute;
+   
   }
   .lstab{
     font-size: 30px;
     font-weight: bold;
+    height: max-content;
+    width: max-content;
   }
   .forgotpwd{
     display : flex;
@@ -51,3 +54,16 @@
     display: flex;
     justify-content: center;
   }
+/* 
+  .signup{
+    height: auto;
+    width: auto;
+  } */
+
+  .otp-box{
+    width: 1.5rem;  
+    height: 2rem;  
+  margin: 1rem 1rem;  
+  font-size: 1rem;  
+  border-radius: 4;  
+  border: 2px solid rgba(0,0,0,0.3) } 

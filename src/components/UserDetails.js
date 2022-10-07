@@ -8,51 +8,55 @@ import { useState } from 'react'
 import Address from "./Address";
 import Orders from "./Orders";
 import Footer from "./Footer";
-export default function UserDetails(){
+import ResetPassword from "./ResetPassword";
+export default function UserDetails({userName1,orderId,setOrderId,uId}){
     const [addressPage,setAddressPage] = useState(false);
     const [ordersPage,setOrdersPage] = useState(false);
-    const [displayPastOrders,setDisplayPastOrders] = useState(false);
-    const [displayCurrentOrders,setDisplayCurrentOrders] = useState(false);
+    const [displayOrders,setDisplayOrders] = useState(false);
+    const [passwordResetPage,setPasswordResetPage] = useState(false)
+    // const [displayCurrentOrders,setDisplayCurrentOrders] = useState(false);
     const displayAddress = ()=>{
         setAddressPage(true);
         setOrdersPage(false);
+        setPasswordResetPage(false);
     }
     const displayOrdersPage = ()=>{
         setOrdersPage(true);
         setAddressPage(false);
-        setDisplayPastOrders(true);
-        setDisplayCurrentOrders(true);
+        setDisplayOrders(true);
+        setPasswordResetPage(false);
+        // setDisplayCurrentOrders(true);
     }
-   const currentOrdersDisplay = () => {
+ const displayPasswordPage = () => {
     
-    setDisplayCurrentOrders(true);
-    setDisplayPastOrders(false);
-     }
-     const pastOrdersDisplay = () => {
+ setPasswordResetPage(true);
+   setDisplayOrders(false);
+   setAddressPage(false);
+   setOrdersPage(false);
+
+    }
+     const allOrdersDisplay = () => {
        
-        setDisplayPastOrders(true);
-        setDisplayCurrentOrders(false);
+        setDisplayOrders(true);
+        // setDisplayCurrentOrders(false);
      }
     return(
-        <div className="mt-5">
+        <div className="mt-5"style={{paddingBottom: '200px'}}>
 <Row>
     <Col sm={4}>      
-<Container>
+<Container >
 <Row>
         <Col sm={12}>
-        <ListGroup defaultActiveKey="/user/addresses">
-      <ListGroup.Item action onClick={displayAddress}>
-       My Addresses
+        <ListGroup style={{textAlign:'end', width:'300px',marginLeft:'200px'}} defaultActiveKey="/user/addresses">
+      <ListGroup.Item style={{fontWeight:"bold"}} action onClick={displayAddress}>
+       My Address
       </ListGroup.Item>
-      <ListGroup.Item action onClick={displayOrdersPage} >
+      <ListGroup.Item style={{fontWeight:"bold"}} action onClick={displayOrdersPage} >
       My Orders
       </ListGroup.Item>
-     { ordersPage===true ? <ListGroup.Item action onClick={pastOrdersDisplay}>
-        Past Orders
-      </ListGroup.Item> : null} 
-      { ordersPage===true ?  <ListGroup.Item action onClick={currentOrdersDisplay}>
-        Current Orders
-      </ListGroup.Item> : null} 
+      <ListGroup.Item style={{fontWeight:"bold"}} action onClick={displayPasswordPage}>
+        Reset Password
+      </ListGroup.Item>
     </ListGroup>
         </Col>
 </Row>
@@ -62,8 +66,9 @@ export default function UserDetails(){
 <Container>
 <Row>
  <Col sm={12}>
-   { addressPage===true ?<Address /> :null}
-   { ordersPage===true ?<Orders displayCurrentOrders={displayCurrentOrders} displayPastOrders={displayPastOrders} /> :null}
+   { addressPage===true ?<Address userName1={userName1} uId={uId}/> :null}
+   { ordersPage===true ?<Orders  displayOrders={displayOrders} userName1={userName1} uId={uId} orderId={orderId} setOrderId={setOrderId}/> :null}
+   { passwordResetPage===true ?<ResetPassword />: null}
     </Col>
       </Row>
 </Container>

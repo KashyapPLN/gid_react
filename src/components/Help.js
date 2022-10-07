@@ -48,7 +48,7 @@ export default function HelpFaq(){
       
     </Accordion>
         </Container>
-        <Footer/>
+        <Footer />
         </div>
     )
 }

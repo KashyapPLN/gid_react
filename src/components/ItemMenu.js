@@ -1,27 +1,57 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import "bootstrap/dist/css/bootstrap.min.css";
-import menuList from './DessertsData.json';
+// import menuList from './DessertsData.json';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import Button from "@mui/material/Button";
-import { useState } from "react";
-import SearchBar from "./SearchBar";
+import { useState,useEffect } from "react";
+
 import { IncDecCounter } from "./IncDecCounter";
 import { CartCard } from "./CartCard";
 import { CategoryFilterList } from "./CategoryFilterList";
 import MainMenuCard from "./MainMenuCard";
 import { useCallback } from 'react';
 
-export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem}) {
+export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem,menuList,userId,uId}) {
   const InitialCount = 0;
 
   // const [cartItem,setCartItem]=useState([]);
   //const [removeButton,setRemoveButton]=useState(false);
+  const cartObj = {
+    "_id" : `${uId}_cart`,
+    "item": cartItem}
+async function createCart(){
+
+  await fetch("http://localhost:4000/cart",{
+    method : 'POST',
+    body :JSON.stringify(cartObj),
+   headers:{ 'Content-Type': 'application/json',
+             'Accept' : 'application/json' }
+  }).then((data)=>data.json())
+  .then((d)=>console.log("successfully created",d))
+}
 
 
+async function cartInDb(){
+  
+  let filteredArray = cartItem.filter(item1 => item1.qty >0);
+console.log('filtered array is fgrthtr',filteredArray);
+// cartItem.push()
+  setCartItem(filteredArray);
+  console.log('filtered array is cart',cartItem);
+  console.log('cart item when qty 1',cartItem);
+  await fetch(`http://localhost:4000/cart/${uId}_cart`,{
+    method : 'POST',
+    body :JSON.stringify(filteredArray),
+   headers:{ 'Content-Type': 'application/json',
+             'Accept' : 'application/json' }
+  }).then((data)=>data.json())
+  .then((d)=>console.log("successful",d))
+ 
+}
   
   const handleAddToCart=(item)=>{
     
@@ -36,7 +66,7 @@ export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem}) 
     setCartItemDisplay(true);
     setItemCount(itemCount + 1);
     
-   //setRemoveButton(!removeButton);
+  
 
   }
   else{
@@ -47,6 +77,23 @@ export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem}) 
     setCartItemDisplay(true);
    
   }
+  console.log(JSON.stringify(cartItem));
+if(item.qty>0){
+ fetch(`http://localhost:4000/cart/${uId}_cart`,{
+    method : 'POST',
+     body :JSON.stringify(cartItem),
+    headers:{ 'Content-Type': 'application/json',
+             'Accept' : 'application/json' }
+    }).then((data)=>data.json())
+    .then((d)=>console.log("successful",d))}
+createCart();
+if(cartObj){
+  cartInDb();
+}
+
+
+
+
   }
 
   function findArrayElementByName(array, name) {
@@ -55,7 +102,7 @@ export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem}) 
     })
   }
  
-  // const [itemCount, setItemCount] = useState(0);
+
   const handleDec = (item) => {
         
   
@@ -65,6 +112,7 @@ export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem}) 
       cartItem.push();
       setCartItem([...cartItem]);
       setCartItemDisplay(true);
+      
     }
     else if(addedItem.qty===1){
       addedItem.qty=addedItem.qty-1;
@@ -72,6 +120,15 @@ export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem}) 
       setCartItem(filteredArray);
 
     }
+    if(item.qty===0){
+      setItemCount(itemCount-1);
+   
+      
+    }
+
+    cartInDb();
+  
+   
   };
 
   const handleInc = (item) => {
@@ -81,17 +138,24 @@ export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem}) 
       cartItem.push();
       setCartItem([...cartItem]);
       setCartItemDisplay(true);
-     
+//  createCart();
+  
+  
+   cartInDb();
+  
+ 
   
   };
+
+ 
   
-  const [cartItemDisplay, setCartItemDisplay] = useState(false);
+  const [cartItemDisplay, setCartItemDisplay] = useState(true);
 
 
 
 const [filteredList,setFilteredList]=useState([]);
 const [originalList,setOriginalList]=useState(menuList);
-
+const [filterClick,setFilterClick]=useState(false);
   let handleFilterList = useCallback((res) =>{
     
     setOriginalList(menuList);
@@ -100,7 +164,7 @@ const [originalList,setOriginalList]=useState(menuList);
     menuList.filter(name => name.type.includes(res.target.innerText)).map(filteredItem => {
     filteredList.push(filteredItem);
     setOriginalList(filteredList);
-   
+    setFilterClick(true)
      
   });
       
@@ -108,9 +172,18 @@ const [originalList,setOriginalList]=useState(menuList);
   
   } );
 
- 
+//  useEffect(()=>{
+//   if(uId){
+
+//     fetch(`http://localhost:4000/cart/${uId}_cart`)
+//      .then((data)=>data.json())
+//      .then((d)=>{cartItem.push(d.item)
+//       setCartItem([...cartItem]);console.log("inside cartitem",cartItem)}); 
   
   
+//   }
+// },[])
+// console.log("outside cartitem",cartItem); 
   return (
     <div>
        <Row>
@@ -125,19 +198,20 @@ const [originalList,setOriginalList]=useState(menuList);
         <Col sm={3}>
           {/* Filter List Starts Here */}
 
-          <CategoryFilterList handleFilterList={handleFilterList} />
+          <CategoryFilterList handleFilterList={handleFilterList} menuList={menuList} />
         </Col>
         <Col sm={5}>
-        {/*{menuList.map((item,index)=>(<MainMenuCard key={item.id} item={item} handleAddToCart={handleAddToCart} removeButton={removeButton} itemCount={itemCount} removeItem={removeItem} />))}*/}
-          {originalList.map((item,index)=>(<MainMenuCard key={item.id} item={item} handleAddToCart={handleAddToCart}  itemCount={itemCount}  />))}
+        {filterClick=== false ? menuList.map((item,index)=>(<MainMenuCard key={item.id} item={item} handleAddToCart={handleAddToCart} itemCount={itemCount} userId={userId} uId={uId}/>)) :
+         originalList.map((item,index)=>(<MainMenuCard key={item.id} item={item} handleAddToCart={handleAddToCart}  itemCount={itemCount}  />))}
         </Col>
         <Col sm={4}>
           {/* Cart Starts Here */}
          
-         <CartCard handleInc={handleInc} handleDec={handleDec} itemCount={itemCount} cartItemDisplay={cartItemDisplay}  cartItem={cartItem} />
+         <CartCard handleInc={handleInc} handleDec={handleDec} itemCount={itemCount} cartItemDisplay={cartItemDisplay} setCartItemDisplay={setCartItemDisplay} cartItem={cartItem} userId={userId} uId={uId}/>
         
         </Col>
       </Row>
+      
       </div>
     </div>
   );

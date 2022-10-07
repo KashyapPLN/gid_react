@@ -2,19 +2,48 @@ import Button from '@mui/material/Button';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from 'react-bootstrap/Card';
-import menuList from './DessertsData.json';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
+import { useState } from "react";
+// import menuList from './DessertsData.json';
 
 
-export function Search({ item,itemCount,setItemCount,cartItem,setCartItem }) {
+export function Search({ item,itemCount,setItemCount,cartItem,setCartItem,userId,uId }) {
 
 const { id, name, price, pic, category, type, quantitydisplay } = item;
- 
-  console.log("item is "+item.price)
-  const handleAddToCart=(item)=>{
-    
-    const exists = cartItem.some(v => (v.name === item.name ));
+const [show,setShow]=useState(false);  
+const cartObj = {
+  "_id" : `${uId}_cart`,
+  "item": cartItem}
+async function createCart(){
 
+await fetch("http://localhost:4000/cart",{
+  method : 'POST',
+  body :JSON.stringify(cartObj),
+ headers:{ 'Content-Type': 'application/json',
+           'Accept' : 'application/json' }
+}).then((data)=>data.json())
+.then((d)=>console.log("successfully created",d))
+}
+async function cartInDb(){
+await fetch(`http://localhost:4000/cart/${userId}_cart`,{
+  method : 'POST',
+  body :JSON.stringify(cartItem),
+ headers:{ 'Content-Type': 'application/json',
+           'Accept' : 'application/json' }
+}).then((data)=>data.json())
+.then((d)=>console.log("successful",d))
+
+}
+
+  // console.log("item is "+item.name)
+  const handleAddToCart=(e)=>{
+    console.log("the req val is",e.target.value)
+    const exists = cartItem.some(v => (v.name === item.name ));
+console.log(exists);
   if(!exists){
+    // console.log(item.value);
+
    item.qty=item.qty+1;
  cartItem.push(item);
     setCartItem([...cartItem]);
@@ -24,9 +53,11 @@ const { id, name, price, pic, category, type, quantitydisplay } = item;
     setItemCount(itemCount + 1);
  
  
-    console.log("item is a"+item.name)
+    // console.log("item is a"+item.name)
   }
   else{
+
+    console.log("Hello World");
     const addedItem=findArrayElementByName(cartItem,item.name);
     addedItem.qty=addedItem.qty+1;
     cartItem.push();
@@ -34,6 +65,19 @@ const { id, name, price, pic, category, type, quantitydisplay } = item;
 
   // console.log("Search"+item)
 }
+
+fetch(`http://localhost:4000/cart/${userId}_cart`,{
+  method : 'POST',
+   body :JSON.stringify(cartItem),
+  headers:{ 'Content-Type': 'application/json',
+           'Accept' : 'application/json' }
+  }).then((data)=>data.json())
+  .then((d)=>console.log("successful",d))
+createCart();
+if(cartObj){
+cartInDb();
+}
+
   }
   function findArrayElementByName(array, name) {
     return array.find((element) => {
@@ -57,7 +101,7 @@ const { id, name, price, pic, category, type, quantitydisplay } = item;
                 </Col>
                 <Col sm={4}>
                   <div className="item_pic_disp"><img className="item_pic" src={pic} /></div>
-                  <div className="btn_disp"><Button value={name} onClick={handleAddToCart} variant="contained">Add to Cart</Button></div>
+                  <div className="btn_disp"><Button value={name} onClick={(e)=>{if(userId!="anonymous"){handleAddToCart(e)}else{setShow(true)}}} variant="contained">Add to Cart</Button></div>
                 </Col>
               </Row>
             </Card.Body>
@@ -65,6 +109,18 @@ const { id, name, price, pic, category, type, quantitydisplay } = item;
         </Col>
         <Col sm={4}></Col>
       </Row>
+      <ToastContainer position="top-end"className="toastmsg " style={{marginRight:"40px",marginTop:"85px"}} >
+
+{show===true ? <Toast onClose={() => setShow(false)} show={show} bg="danger" delay={3000} autohide>
+    <Toast.Header>
+      
+      <strong className="me-auto">Please Login to add items to the cart</strong>
+  
+    </Toast.Header>
+    
+  </Toast> :
+  null}
+  </ToastContainer>
     </div>
   );
 
