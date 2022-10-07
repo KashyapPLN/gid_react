@@ -305,7 +305,7 @@ const onSignInSubmit = (e) =>{
       <form >
         <div id= 'sign-in-button'></div>
         <div>
-           <TextField name='mobnumber' label="Mobile Number" type="text" sx={{width:"100%",paddingBottom : '30px',marginTop :'30px'}} onChange={(e)=>{handleChange(e)}}/>
+           <TextField max={10} name='mobnumber' label="Mobile Number" type="text" sx={{width:"100%",paddingBottom : '30px',marginTop :'30px'}} onChange={(e)=>{handleChange(e)}} required/>
            </div>  
            
            
@@ -349,9 +349,7 @@ window.confirmationResult.confirm(code).then((result) => {
  setShowFp(false);
  setOtpSuccess(true);
  document.getElementsByClassName("login-signup")[0].style.display = 'none';
-//  document.getElementByClassName("resetPassword").autofocus;
-// document.getElementById('resetPassword').focus();
- //document.getElementsByClassName("fade offcanvas-backdrop show").classList.remove('fade offcanvas-backdrop show');
+
  window.location.reload();
  console.log(otpSuccess);
 }).catch((error) => {
@@ -365,7 +363,8 @@ window.confirmationResult.confirm(code).then((result) => {
 
  
 
-  const [otp,setOtp]=useState([])
+  const [otp,setOtp]=useState([]);
+  const[counter,setCounter]=useState(0);
   // function otpValidation(e){console.log("otp entered is",otp);}
   return(
      <div className="forgotpwd1">
@@ -389,8 +388,8 @@ window.confirmationResult.confirm(code).then((result) => {
         />
        
         </div>
-       <Button  onClick={(e)=>otpSubmit(e,otp)} sx={{marginTop :'20px'}} variant="contained" >Confirm OTP</Button>
-     
+       <Button  onClick={(e)=>{otpSubmit(e,otp);setCounter(1)}} sx={{marginTop :'20px'}} variant="contained" >Confirm OTP</Button>
+     {otpSuccess==false&&counter===1?<p style={{color:'red'}}>Please enter correct OTP</p>:null}
     
        </div>
     
