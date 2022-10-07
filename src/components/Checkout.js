@@ -23,7 +23,9 @@ export default function Checkout({cartItem,itemCount,setItemCount,setCartItem,us
         <div className='mt-5 '>
             <Row>
                 <Col sm={7}>
+                    <div style={{marginLeft:'200px'}}>
                     <Address userName1={userName1} uId={uId} />
+                    </div>
                 </Col>
                 <Col sm={5}>
                     <Row>
