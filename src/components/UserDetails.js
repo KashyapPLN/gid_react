@@ -9,23 +9,25 @@ import Address from "./Address";
 import Orders from "./Orders";
 import Footer from "./Footer";
 import ResetPassword from "./ResetPassword";
+import UpdateUserMobile from "./UpdateUserMobile";
 export default function UserDetails({userName1,orderId,setOrderId,uId}){
     const [addressPage,setAddressPage] = useState(false);
     const [ordersPage,setOrdersPage] = useState(false);
     const [displayOrders,setDisplayOrders] = useState(false);
     const [passwordResetPage,setPasswordResetPage] = useState(false)
-    // const [displayCurrentOrders,setDisplayCurrentOrders] = useState(false);
+   const [updateDetails,setUpdateDetails] = useState(false);
     const displayAddress = ()=>{
         setAddressPage(true);
         setOrdersPage(false);
         setPasswordResetPage(false);
+        setUpdateDetails(false);
     }
     const displayOrdersPage = ()=>{
         setOrdersPage(true);
         setAddressPage(false);
         setDisplayOrders(true);
         setPasswordResetPage(false);
-        // setDisplayCurrentOrders(true);
+        setUpdateDetails(false);
     }
  const displayPasswordPage = () => {
     
@@ -33,8 +35,16 @@ export default function UserDetails({userName1,orderId,setOrderId,uId}){
    setDisplayOrders(false);
    setAddressPage(false);
    setOrdersPage(false);
+   setUpdateDetails(false);
 
     }
+  const displayUpdateDetails=() =>{
+    setPasswordResetPage(false);
+    setDisplayOrders(false);
+    setAddressPage(false);
+    setOrdersPage(false);
+    setUpdateDetails(true);
+  }
      const allOrdersDisplay = () => {
        
         setDisplayOrders(true);
@@ -57,6 +67,9 @@ export default function UserDetails({userName1,orderId,setOrderId,uId}){
       <ListGroup.Item style={{fontWeight:"bold"}} action onClick={displayPasswordPage}>
         Reset Password
       </ListGroup.Item>
+      <ListGroup.Item style={{fontWeight:"bold"}} action onClick={displayUpdateDetails}>
+        Update Phone Number
+      </ListGroup.Item>
     </ListGroup>
         </Col>
 </Row>
@@ -68,7 +81,8 @@ export default function UserDetails({userName1,orderId,setOrderId,uId}){
  <Col sm={12}>
    { addressPage===true ?<Address userName1={userName1} uId={uId}/> :null}
    { ordersPage===true ?<Orders  displayOrders={displayOrders} userName1={userName1} uId={uId} orderId={orderId} setOrderId={setOrderId}/> :null}
-   { passwordResetPage===true ?<ResetPassword />: null}
+   { passwordResetPage===true ?<ResetPassword uId={uId}/>: null}
+   {updateDetails===true?<UpdateUserMobile uId={uId}/>:null}
     </Col>
       </Row>
 </Container>
