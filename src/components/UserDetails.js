@@ -11,7 +11,7 @@ import Footer from "./Footer";
 import ResetPassword from "./ResetPassword";
 import UpdateUserMobile from "./UpdateUserMobile";
 export default function UserDetails({userName1,orderId,setOrderId,uId}){
-    const [addressPage,setAddressPage] = useState(false);
+    const [addressPage,setAddressPage] = useState(true);
     const [ordersPage,setOrdersPage] = useState(false);
     const [displayOrders,setDisplayOrders] = useState(false);
     const [passwordResetPage,setPasswordResetPage] = useState(false)
