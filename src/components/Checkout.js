@@ -83,7 +83,7 @@ return(
          <Button variant="contained" color="success" onClick={() => {
            if(proceed==true){ setPayment(true);}}}>Proceed to Payment</Button></ListGroup.Item> : <div><p className="emptycart mt-4">Your Cart is Empty</p><p className="fillcart"><AddShoppingCartIcon /></p></div>}
       </ListGroup>
-     {proceed==false ? <p style={{color:'red'}}>Please add adress to proceed</p>:null}
+     {proceed==false ? <p style={{color:'red'}}>Please add address to proceed to payment</p>:null}
     </Card>
     
    </div>
