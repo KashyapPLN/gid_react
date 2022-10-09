@@ -7,7 +7,7 @@ import { useState,useEffect } from "react";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import axios from "axios";
-export default function Address({userName1,uId}){
+export default function Address({userName1,uId,parentCallback}){
  
     const [name,setName]=useState("");
     const [line1,setLine1]=useState("");
@@ -19,8 +19,8 @@ export default function Address({userName1,uId}){
     console.log("uId in addr is", uId)
     const[addressExist,setAddressExist]=useState(false);
    
-   
-   
+  parentCallback(addressExist);
+
 const handleSubmit = (e) => {
   const addressObj = {
     name : name,

@@ -50,6 +50,11 @@ export default function UserDetails({userName1,orderId,setOrderId,uId}){
         setDisplayOrders(true);
         // setDisplayCurrentOrders(false);
      }
+
+     const receivedData = (data) => {
+      console.log('data from addr in userpage',data);
+    
+  }
     return(
         <div className="mt-5"style={{paddingBottom: '200px'}}>
 <Row>
@@ -79,7 +84,7 @@ export default function UserDetails({userName1,orderId,setOrderId,uId}){
 <Container>
 <Row>
  <Col sm={12}>
-   { addressPage===true ?<Address userName1={userName1} uId={uId}/> :null}
+   { addressPage===true ?<Address userName1={userName1} parentCallback = {receivedData} uId={uId}/> :null}
    { ordersPage===true ?<Orders  displayOrders={displayOrders} userName1={userName1} uId={uId} orderId={orderId} setOrderId={setOrderId}/> :null}
    { passwordResetPage===true ?<ResetPassword uId={uId}/>: null}
    {updateDetails===true?<UpdateUserMobile uId={uId}/>:null}

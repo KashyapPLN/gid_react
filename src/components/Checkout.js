@@ -18,19 +18,23 @@ import Footer from './Footer';
 
 export default function Checkout({cartItem,itemCount,setItemCount,setCartItem,userName1,uId}){
     const [payment, setPayment] = useState(false);
- 
+    const [proceed,setProceed] =useState(false);
+    const receivedData = (data) => {
+        console.log('data from addr',data);
+        setProceed(data);
+    }
     return(
         <div className='mt-5 '>
             <Row>
                 <Col sm={7}>
                     <div style={{marginLeft:'200px'}}>
-                    <Address userName1={userName1} uId={uId} />
+                    <Address userName1={userName1} uId={uId} parentCallback = {receivedData}/>
                     </div>
                 </Col>
                 <Col sm={5}>
                     <Row>
                         <Col sm={12}>
-                    {itemCount>0 ? <FinalCart itemCount={itemCount}cartItem={cartItem}  setPayment={setPayment}/>: null}
+                    {itemCount>0 ? <FinalCart itemCount={itemCount}cartItem={cartItem} proceed={proceed}  setPayment={setPayment}/>: null}
                     </Col>
                     </Row>
                 </Col>
@@ -47,15 +51,8 @@ export default function Checkout({cartItem,itemCount,setItemCount,setCartItem,us
 
 
 
-export function FinalCart({cartItem,setPayment}){
+export function FinalCart({cartItem,setPayment,proceed}){
 
-   
-   const removeItem = (e)=>{
-
-    console.log("the req val for remove is",e)
- 
-   
-}
 
  
 return(
@@ -84,9 +81,9 @@ return(
     {(cartItem.reduce((total, item) => total + item.qty * item.price, 0))>0 ? <ListGroup.Item className="total_item"><p>Total </p><p>₹ <span id="total_amt">{(cartItem.reduce((total, item) => total + item.qty * item.price, 0))}</span>.00</p></ListGroup.Item>:null}
     {(cartItem.reduce((total, item) => total + item.qty * item.price, 0))>0 ?  <ListGroup.Item>
          <Button variant="contained" color="success" onClick={() => {
-            setPayment(true);}}>Proceed to Payment</Button></ListGroup.Item> : <div><p className="emptycart mt-4">Your Cart is Empty</p><p className="fillcart"><AddShoppingCartIcon /></p></div>}
+           if(proceed==true){ setPayment(true);}}}>Proceed to Payment</Button></ListGroup.Item> : <div><p className="emptycart mt-4">Your Cart is Empty</p><p className="fillcart"><AddShoppingCartIcon /></p></div>}
       </ListGroup>
-     
+     {proceed==false ? <p style={{color:'red'}}>Please add adress to proceed</p>:null}
     </Card>
     
    </div>
