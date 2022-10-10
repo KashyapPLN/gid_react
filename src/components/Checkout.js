@@ -2,16 +2,12 @@ import * as React from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Address from "./Address";
-import { useState,useContext,useRef, useEffect } from 'react';
+import { useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { CartCard } from './CartCard'; 
 import Button from "@mui/material/Button";
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import GooglePayButton from '@google-pay/button-react';
-import OrderConfirmation from './OrderConfirmation';
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 import Footer from './Footer';
@@ -73,9 +69,6 @@ return(
                 <Col sm={4}>
                 <p style={{textAlign:"end",fontSize:"16px",marginLeft:"20px"}}>₹ {item.qty*item.price}.00</p>
                 </Col>
-                {/* <Col sm={2}>
-                    
-                {/* </Row> */}
                 </div>
                 </ListGroup.Item>))}
     {(cartItem.reduce((total, item) => total + item.qty * item.price, 0))>0 ? <ListGroup.Item className="total_item"><p>Total </p><p>₹ <span id="total_amt">{(cartItem.reduce((total, item) => total + item.qty * item.price, 0))}</span>.00</p></ListGroup.Item>:null}
@@ -93,7 +86,6 @@ return(
 
 export function Payment({cartItem,itemCount,setItemCount,setCartItem,payment,userName1,currentOrder,setCurrentOrder,uId}){
     const [paymentStatus,setPaymentStatus] = useState(400);
-    // const [order,setOrder]=useState({});
     const navigate=useNavigate();
     
     const unique_id = uuid();
@@ -112,7 +104,6 @@ export function Payment({cartItem,itemCount,setItemCount,setCartItem,payment,use
         "orderItem": cartItem,
         "orderDateTime" : Date().toLocaleString()
     };
-//    setCurrentOrder(order._id);  
      fetch("http://localhost:4000/user/orders",{
         method : 'POST',
          body :JSON.stringify(orderDetails),
@@ -121,7 +112,6 @@ export function Payment({cartItem,itemCount,setItemCount,setCartItem,payment,use
        }).then((data)=>data.json())
     .then((d)=>console.log("order successfully created",d))
     
-    // navigate('/orderconfirmation');
 }
   
 
@@ -130,8 +120,6 @@ export function Payment({cartItem,itemCount,setItemCount,setCartItem,payment,use
 console.log(payment);
 console.log(paymentStatus);
     return (<div className="paymentGW">
-        
-       {/* <p>{(cartItem.reduce((total, item) => total + item.qty * item.price, 0))}</p> */}
     {payment===true ?  
       <GooglePayButton 
        environment='TEST'
@@ -172,8 +160,7 @@ console.log(paymentStatus);
        onLoadPaymentData={paymentRequest=>{console.log('load payment data',paymentRequest);}}
        onPaymentAuthorized={paymentData => {
     createOrder();
-        // setPaymentStatus(200);
-        deleteCart();
+               deleteCart();
         setItemCount(0);
         setCartItem([]);
         navigate('/orderconfirmation');
@@ -183,8 +170,6 @@ console.log(paymentStatus);
        
       />
      : null}
-
-     {/* {paymentStatus===200 ? <OrderConfirmation/>: null}  */}
         </div>)
 }
 

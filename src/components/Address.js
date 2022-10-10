@@ -1,8 +1,7 @@
 import * as React from "react";
 import Card from 'react-bootstrap/Card';
 import { Button, Input } from '@mui/material';
-import { Container, FormControl, TextField } from "@mui/material";
-import Form from 'react-bootstrap/Form';
+import { Container} from "@mui/material";
 import { useState,useEffect } from "react";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -72,11 +71,6 @@ function handleEdit(e){
 }
 
  useEffect(()=>{
-     
-//     // fetch(`http://localhost:4000/user/${userId}_address`)
-//     // .then((data)=>data.json())
-//     // .then((adr)=>setDefaultAddr(adr));
-
   axios.get(`http://localhost:4000/user/${uId}_address`)
    .then((res)=>{console.log("address res is",res.data);
   // setDefaultAddr(res.data);
@@ -92,9 +86,6 @@ function handleEdit(e){
      .catch(err=>{console.log(err)})
    
    },[])
-//  console.log(defaultAddr.address,"is def addr");
- 
-
 return(
     <Container>
        
@@ -129,7 +120,6 @@ return(
           />
         </Card.Text>
         <Button onClick={(e)=> handleEdit(e)} variant="contained">Edit</Button>
-        {/* </FormControl> */}
         </form> 
       </Card.Body>
     </Card>
@@ -138,7 +128,6 @@ return(
       <Card.Header><Card.Title><AddLocationAltIcon sx={{marginRight:"16px",marginBottom:"6px"}} />Address</Card.Title></Card.Header>
       <Card.Body className="addressbody" >
       <form >
-      {/* <FormControl> */}
         <Card.Text className="addressform">
         <Input placeholder="Name"  onChange={(e)=>setName(e.target.value)} /> 
           <Input placeholder="Address Line 1"  onChange={(e)=>setLine1(e.target.value)} />
@@ -147,7 +136,6 @@ return(
           <Input placeholder= "Pin Code"  onChange={(e)=>setPin(e.target.value)} />
         </Card.Text>
         <Button onClick={(e)=> handleSubmit(e)} variant="contained">Add New</Button>
-        {/* </FormControl> */}
         </form>
       </Card.Body>
     </Card> 

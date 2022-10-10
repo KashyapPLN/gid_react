@@ -1,15 +1,8 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import menuList from './DessertsData.json';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ListGroup from "react-bootstrap/ListGroup";
-import Card from "react-bootstrap/Card";
-import Button from "@mui/material/Button";
-import { useState,useEffect } from "react";
-
-import { IncDecCounter } from "./IncDecCounter";
+import { useState} from "react";
 import { CartCard } from "./CartCard";
 import { CategoryFilterList } from "./CategoryFilterList";
 import MainMenuCard from "./MainMenuCard";
@@ -17,9 +10,6 @@ import { useCallback } from 'react';
 
 export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem,menuList,userId,uId}) {
   const InitialCount = 0;
-
-  // const [cartItem,setCartItem]=useState([]);
-  //const [removeButton,setRemoveButton]=useState(false);
   const cartObj = {
     "_id" : `${uId}_cart`,
     "item": cartItem}
@@ -138,8 +128,6 @@ if(cartObj){
       cartItem.push();
       setCartItem([...cartItem]);
       setCartItemDisplay(true);
-//  createCart();
-  
   
    cartInDb();
   
@@ -172,18 +160,6 @@ const [filterClick,setFilterClick]=useState(false);
   
   } );
 
-//  useEffect(()=>{
-//   if(uId){
-
-//     fetch(`http://localhost:4000/cart/${uId}_cart`)
-//      .then((data)=>data.json())
-//      .then((d)=>{cartItem.push(d.item)
-//       setCartItem([...cartItem]);console.log("inside cartitem",cartItem)}); 
-  
-  
-//   }
-// },[])
-// console.log("outside cartitem",cartItem); 
   return (
     <div>
        <Row>

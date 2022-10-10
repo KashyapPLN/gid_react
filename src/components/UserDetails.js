@@ -3,7 +3,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Button } from "bootstrap";
 import { useState } from 'react'
 import Address from "./Address";
 import Orders from "./Orders";
@@ -48,7 +47,6 @@ export default function UserDetails({userName1,orderId,setOrderId,uId}){
      const allOrdersDisplay = () => {
        
         setDisplayOrders(true);
-        // setDisplayCurrentOrders(false);
      }
 
      const receivedData = (data) => {

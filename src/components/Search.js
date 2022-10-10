@@ -5,8 +5,6 @@ import Card from 'react-bootstrap/Card';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import { useState } from "react";
-// import menuList from './DessertsData.json';
-
 
 export function Search({ item,itemCount,setItemCount,cartItem,setCartItem,userId,uId }) {
 
@@ -35,8 +33,6 @@ await fetch(`http://localhost:4000/cart/${userId}_cart`,{
 .then((d)=>console.log("successful",d))
 
 }
-
-  // console.log("item is "+item.name)
   const handleAddToCart=(e)=>{
     console.log("the req val is",e.target.value)
     const exists = cartItem.some(v => (v.name === item.name ));
@@ -48,12 +44,8 @@ console.log(exists);
  cartItem.push(item);
     setCartItem([...cartItem]);
 
- 
- 
     setItemCount(itemCount + 1);
  
- 
-    // console.log("item is a"+item.name)
   }
   else{
 

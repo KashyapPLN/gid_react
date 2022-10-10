@@ -21,12 +21,9 @@ if(changedPwd===confirmChangedPwd&&changedPwd!==''){
     fetch(`http://localhost:4000/user/update-password/${userName}`,{
         method : 'PUT',
         body :JSON.stringify(rPwd),
-        
-        // mode: 'no-cors',
         headers:{ 'Content-Type': 'application/json',
                   'Accept' : 'application/json',
-                // 'Access-Control-Allow-Origin:':'http://localhost:3000',
-                 
+                
                  }
       }).then((data)=>console.log(data))
       navigate('/');
