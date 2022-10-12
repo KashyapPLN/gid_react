@@ -24,22 +24,22 @@ export default function Footer(){
         <AppBar className="footer-disp" position="fixed" sx={{top: 'auto', bottom: 0,height:'180px',backgroundColor:'#e1e1e1'}}>
         <div className="custom-footer">
             <Container >
-            <Button  variant="text" aria-label="contact Us">
+            <Button  variant="text" aria-label="contact Us"onClick={(e)=>window.location.href='http://www.gmail.com'}>
           <EmailIcon />
           </Button>
           <Button variant="text"> 
           <CallIcon />
           </Button>
-          <Button variant="text"> 
+          <Button variant="text" onClick={(e)=>window.location.href='http://www.faceebook.com'}> 
           <FacebookIcon />
           </Button>
-          <Button variant="text"> 
+          <Button variant="text" onClick={(e)=>window.location.href='http://www.instagram.com'}> 
           <InstagramIcon />
           </Button>
-          <Button variant="text"> 
+          <Button variant="text" onClick={(e)=>window.location.href='http://www.twitter.com'}> 
           <TwitterIcon/>
           </Button>
-          <Button variant="text"> 
+          <Button variant="text" onClick={(e)=>window.location.href='http://www.youtube.com'}> 
           <YouTubeIcon/>
           </Button>
     </Container>
