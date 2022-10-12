@@ -53,7 +53,7 @@ useEffect(()=>{
   const navigate=useNavigate();
 
   const [showOffC, setShowOffC] = useState(false);
-  const [showPop, setShowPop] = useState(true);
+  // const [showPop, setShowPop] = useState(true);
 
 // const hideNavCart = () => {
 //   setShowPop(!showPop);
@@ -109,7 +109,7 @@ document.getElementById("searchBar").value = "";
 
 const [uId,setUId]=useState('');
   console.log("token value is",getCookie("token"));
-   if(getCookie("token")!=undefined){
+   if(getCookie("token")!==undefined){
   fetch(`http://localhost:4000/user/validateuser/`+getCookie("token"))
   .then((data)=>data.json())
   .then((val)=>{console.log(val);setUId(val.user.id)});
@@ -172,7 +172,7 @@ useEffect(()=>{
 </div>
   </Toolbar>
   <Toolbar className='head-end'>
-  {uId!= "" ? <Button sx={{fontWeight:"bolder",fontSize:"16px"}} color="inherit" onClick={()=>navigate('/user')}>{uId}</Button> : null}
+  {uId!== "" ? <Button sx={{fontWeight:"bolder",fontSize:"16px"}} color="inherit" onClick={()=>navigate('/user')}>{uId}</Button> : null}
   {uId==="" ? <Button color="inherit" onClick={handleShow}><PersonRoundedIcon /></Button> : null}
      
      <Button color="inherit" sx={{fontWeight:"bolder",fontSize:"16px"}} onClick={()=>navigate('/menu')}>Menu</Button>
@@ -210,14 +210,14 @@ useEffect(()=>{
                 <p style={{textAlign:"start",fontWeight:"bold"}}>Total </p>
                 <p style={{textAlign:"end",fontWeight:"bold"}}>₹ {(cartItem.reduce((total, item) => total + item.qty * item.price, 0))}.00</p></div>
                 <hr />
-                <Button color="success" variant="contained"className='navCheck' onClick={()=>{if(uId!=""){navigate('/checkout');document.getElementById("popover-positioned-bottom").classList.remove('show');}}}>CHECKOUT</Button>
+                <Button color="success" variant="contained"className='navCheck' onClick={()=>{if(uId!==""){navigate('/checkout');document.getElementById("popover-positioned-bottom").classList.remove('show');}}}>CHECKOUT</Button>
               </Popover.Body> :<div><p className="emptycart mt-3">Your Cart is Empty</p><p className="fillcart"><AddShoppingCartIcon /></p></div>}
             </Popover> 
           }
         >
     <IconButton aria-label="cart-basket" color="inherit" onClick=""><Badge badgeContent={itemCount} color="error"><ShoppingCartIcon sx={{marginRight:"10px"}}/></Badge></IconButton>
     </OverlayTrigger> ))}
-    {uId != "" ? <Button color='inherit'onClick={logout}><LogoutIcon/></Button> : null}
+    {uId !== "" ? <Button color='inherit'onClick={logout}><LogoutIcon/></Button> : null}
     </Toolbar>
     
   </AppBar>
@@ -239,7 +239,7 @@ useEffect(()=>{
     <Route path="/login" element={<Login userId={userId} setUserId={setUserId} uId={uId} setShowOffC={setShowOffC}/>} />
     <Route path="/menu" element={<ItemMenu itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem} menuList={menuList} userId={userId} uId={uId}/> } />
     <Route path="/help" element={<HelpFaq />} />
-    {uId!="" ? <Route path="/user" element={<UserDetails userName1={userName1} uId={uId}/>} /> : null}
+    {uId!=="" ? <Route path="/user" element={<UserDetails userName1={userName1} uId={uId}/>} /> : null}
     <Route path="/user/addresses" element={<Address userName1={userName1}/>} />
     <Route path="/user/orders" element={<Orders userName1={userName1}uId={uId} />} />
     <Route path="/cart" element={<CartCard />} />
