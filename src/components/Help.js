@@ -8,7 +8,7 @@ import CallIcon from '@mui/icons-material/Call';
 import Footer from "./Footer";
 export default function HelpFaq(){
   function emailUs(e){
-    window.location.href='http://www.gmail.com';
+    window.open('http://www.gmail.com');
   }
     return(
         <div>
