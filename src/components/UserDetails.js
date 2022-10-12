@@ -44,10 +44,10 @@ export default function UserDetails({userName1,orderId,setOrderId,uId}){
     setOrdersPage(false);
     setUpdateDetails(true);
   }
-     const allOrdersDisplay = () => {
+    //  const allOrdersDisplay = () => {
        
-        setDisplayOrders(true);
-     }
+    //     setDisplayOrders(true);
+    //  }
 
      const receivedData = (data) => {
       console.log('data from addr in userpage',data);

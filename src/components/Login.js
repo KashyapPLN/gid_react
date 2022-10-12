@@ -2,8 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -13,7 +11,6 @@ import Collapse from 'react-bootstrap/Collapse'
 import { useFormik } from 'formik';
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import cookie from "react-cookie";
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import firebase from './firebase';
@@ -181,7 +178,7 @@ function LoginForm({userId,setUserId,setMessage,setShow,setErrMsg,otpSuccess,set
       headers:{ 'Content-Type': 'application/json',
                 'Accept' : 'application/json' }
     }).then((data)=>performLogin(data))
-    if(userId!='anonymous'){
+    if(userId!=='anonymous'){
     navigate('/menu');
     }
     
@@ -390,7 +387,7 @@ window.confirmationResult.confirm(code).then((result) => {
        
         </div>
        <Button  onClick={(e)=>{otpSubmit(e,otp);setCounter(1)}} sx={{marginTop :'20px'}} variant="contained" >Confirm OTP</Button>
-     {otpSuccess==false&&counter===1?<p style={{color:'red'}}>Please enter correct OTP</p>:null}
+     {otpSuccess===false&&counter===1?<p style={{color:'red'}}>Please enter correct OTP</p>:null}
     
        </div>
     

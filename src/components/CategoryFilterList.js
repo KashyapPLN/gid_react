@@ -1,65 +1,10 @@
 import * as React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { useState } from "react";
-// import menuList from './DessertsData.json';
 import { useCallback } from 'react';
 
 
 export function CategoryFilterList({handleFilterList,menuList}) {
-  const rootCategoryList = [
-    {
-      "dessert_item_name": "Pastries",
-      "type":"pastries"
-    },
-
-    {
-      "dessert_item_name": "Cup Cakes",
-      "type" :"cupcakes"
-    },
-
-    {
-      "dessert_item_name": "Dry Cakes",
-      "type" :"drycakes"
-
-    },
-
-    {
-      "dessert_item_name": "Smoothies",
-      "type" :"smoothies"
-    },
-    {
-      "dessert_item_name": "Frozen",
-      "type" : "frozen"
-    },
-    {
-      "dessert_item_name": "Muffins",
-      "type" :"muffins"
-    },
-    {
-      "dessert_item_name": "South Indian",
-      "type" :"southindian"
-    },
-    {
-      "dessert_item_name": "North Indian",
-      "type":"northindian"
-    },
-    {
-      "dessert_item_name": "Fried",
-      "type":"fried"
-    },
-    {
-      "dessert_item_name": "Chocolate Filled",
-      "type":"chocolate"
-    },
-    {
-      "dessert_item_name": "Candies",
-      "type":"candies"
-    },
-    {
-      "dessert_item_name": "Brownies",
-      "type":"brownies"
-    }
-  ];
+ // eslint-disable-next-line
   let handleFilterList1 = useCallback((filterItem) => handleFilterList(filterItem));
 
  

@@ -84,14 +84,14 @@ function handleEdit(e){
 
   })
      .catch(err=>{console.log(err)})
-   
+   // eslint-disable-next-line
    },[])
 return(
     <Container>
        
     <div className="addresspage">
        
-      {name&&line1&&line2&&line3&&pin!= undefined && addressExist==true? 
+      {name&&line1&&line2&&line3&&pin!== undefined && addressExist===true? 
        <Card className="address">
       <Card.Header><Card.Title><LocationOnIcon sx={{marginRight:"16px",marginBottom:"6px"}}/>Address</Card.Title></Card.Header>
       <Card.Body className="addressbody">

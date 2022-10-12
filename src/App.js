@@ -76,7 +76,7 @@ const [currentOrder,setCurrentOrder]=useState([]);
 
   setOriginalList([]);
   setFilteredList([]);
-
+// eslint-disable-next-line
    menuList.filter(product => (product.name.toLowerCase().includes(searchVal))||(product.type.toLowerCase().includes(searchVal))).map(filteredItem => {
  filteredList.push(filteredItem);
   setOriginalList(filteredList); });
@@ -122,6 +122,7 @@ console.log("uid is",uId);
   console.log("userName is ", uId);
 
   function delete_cookie() {
+    // eslint-disable-next-line
     document.cookie = "token" +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
   
@@ -135,6 +136,7 @@ const logout = () => {
 }
 
 const [callCartApi,setCallCartApi] = useState(true);
+// eslint-disable-next-line
 useEffect(()=>{
 
   if(uId!==''&&cartItem.length<1&&callCartApi){

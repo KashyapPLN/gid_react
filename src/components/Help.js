@@ -1,7 +1,6 @@
 import { Container } from "@mui/system";
 import * as React from "react";
 import Accordion from 'react-bootstrap/Accordion';
-import Button from "@mui/material/Button";
 import EmailIcon from '@mui/icons-material/Email';
 import IconButton from '@mui/material/IconButton';
 import CallIcon from '@mui/icons-material/Call';
@@ -15,8 +14,7 @@ export default function HelpFaq(){
         <Container className='mt-5'>
             <h2 className='mb-5'>Frequently Asked Questions</h2>
             <Accordion flush>
-                {/* defaultActiveKey="0"  */}
-      <Accordion.Item eventKey="0">
+           <Accordion.Item eventKey="0">
         <Accordion.Header flush><p className="question">What is customer care number ?</p></Accordion.Header>
         <Accordion.Body>
           Click below links to contact us.

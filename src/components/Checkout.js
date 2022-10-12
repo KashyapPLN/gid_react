@@ -37,7 +37,7 @@ export default function Checkout({cartItem,itemCount,setItemCount,setCartItem,us
             </Row>
             <Row>
                 <Col sm={12} >
-                {itemCount>0 && uId!='' ? <Payment itemCount={itemCount}cartItem={cartItem} setItemCount={setItemCount} setCartItem={setCartItem} payment={payment} userName1={userName1} uId={uId}/>: null}
+                {itemCount>0 && uId!=='' ? <Payment itemCount={itemCount}cartItem={cartItem} setItemCount={setItemCount} setCartItem={setCartItem} payment={payment} userName1={userName1} uId={uId}/>: null}
                 </Col>
             </Row>
             <Footer />
@@ -74,9 +74,9 @@ return(
     {(cartItem.reduce((total, item) => total + item.qty * item.price, 0))>0 ? <ListGroup.Item className="total_item"><p>Total </p><p>₹ <span id="total_amt">{(cartItem.reduce((total, item) => total + item.qty * item.price, 0))}</span>.00</p></ListGroup.Item>:null}
     {(cartItem.reduce((total, item) => total + item.qty * item.price, 0))>0 ?  <ListGroup.Item>
          <Button variant="contained" color="success" onClick={() => {
-           if(proceed==true){ setPayment(true);}}}>Proceed to Payment</Button></ListGroup.Item> : <div><p className="emptycart mt-4">Your Cart is Empty</p><p className="fillcart"><AddShoppingCartIcon /></p></div>}
+           if(proceed===true){ setPayment(true);}}}>Proceed to Payment</Button></ListGroup.Item> : <div><p className="emptycart mt-4">Your Cart is Empty</p><p className="fillcart"><AddShoppingCartIcon /></p></div>}
       </ListGroup>
-     {proceed==false ? <p style={{color:'red'}}>Please add address to proceed to payment</p>:null}
+     {proceed===false ? <p style={{color:'red'}}>Please add address to proceed to payment</p>:null}
     </Card>
     
    </div>
@@ -85,6 +85,7 @@ return(
 }
 
 export function Payment({cartItem,itemCount,setItemCount,setCartItem,payment,userName1,currentOrder,setCurrentOrder,uId}){
+    // eslint-disable-next-line
     const [paymentStatus,setPaymentStatus] = useState(400);
     const navigate=useNavigate();
     

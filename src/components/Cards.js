@@ -41,7 +41,7 @@ async function cartInDb(){
     })
   }
 
-  
+  // eslint-disable-next-line
   const [topRatedVal,setTopRatedVal]=useState('');
   
   const  tryNow = (e) => {
@@ -95,7 +95,7 @@ cartInDb();
     {isShown===true ?  
         <div className='custom-card-btn'>
      
-        <Button className='cardBtn' variant="text" id={homemenu.id} value={homemenu.name}  onClick={(e)=>{if(uId!=""){tryNow(e)}else{setShow(true); window.scrollTo(0, 0)}}}><img className="tryNowbtn" src="https://cdn-icons-png.flaticon.com/512/70/70021.png"/></Button>
+        <Button className='cardBtn' variant="text" id={homemenu.id} value={homemenu.name}  onClick={(e)=>{if(uId!==""){tryNow(e)}else{setShow(true); window.scrollTo(0, 0)}}}><img className="tryNowbtn" src="https://cdn-icons-png.flaticon.com/512/70/70021.png" alt='try now'/></Button>
         
         </div>
        : null}

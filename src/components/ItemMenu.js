@@ -9,7 +9,6 @@ import MainMenuCard from "./MainMenuCard";
 import { useCallback } from 'react';
 
 export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem,menuList,userId,uId}) {
-  const InitialCount = 0;
   const cartObj = {
     "_id" : `${uId}_cart`,
     "item": cartItem}
@@ -144,11 +143,12 @@ if(cartObj){
 const [filteredList,setFilteredList]=useState([]);
 const [originalList,setOriginalList]=useState(menuList);
 const [filterClick,setFilterClick]=useState(false);
-  let handleFilterList = useCallback((res) =>{
+// eslint-disable-next-line
+let handleFilterList = useCallback((res) =>{
     
     setOriginalList(menuList);
     setFilteredList([]);
-    
+    // eslint-disable-next-line
     menuList.filter(name => name.type.includes(res.target.innerText)).map(filteredItem => {
     filteredList.push(filteredItem);
     setOriginalList(filteredList);

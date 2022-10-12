@@ -11,7 +11,7 @@ export default function AllOrders({orders}){
       <Card.Body>
       {details.orderItem.map((item)=><div className="p_orders"><span style={{marginRight:"30px"}}>{item.name}  x {item.qty}</span>
       
-      <span><img className="category"src={item.category} /></span></div>)}
+      <span><img className="category"src={item.category} alt='category' /></span></div>)}
         
       <Card.Text className="text-muted">
       

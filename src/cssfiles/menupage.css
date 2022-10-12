@@ -9,7 +9,7 @@
   }
   .item_pic_disp{
     display: flex;
-    justify-content: end;
+    justify-content:flex-end;
   }
   .btn_disp{
     display: flex;

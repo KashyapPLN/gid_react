@@ -34,7 +34,7 @@ console.log('uId in update acc',uId);
           
           
             <Button variant='contained' onClick={(e)=>userUpdate(e)}>Update</Button>
-            {updated==true?<p style={{color:'green'}}>User Phone Number updated successfully </p>:null}
+            {updated===true?<p style={{color:'green'}}>User Phone Number updated successfully </p>:null}
         </div>
     );
 };
