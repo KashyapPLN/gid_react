@@ -34,6 +34,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import OrderConfirmation from './components/OrderConfirmation';
 import Orders from './components/Orders';
 import ResetPassword from './components/ResetPassword';
+import AddandRemove from './components/AddandRemove';
 
 
 function App() {
@@ -166,23 +167,21 @@ useEffect(()=>{
   <img className="gidlogo"src={sweets} alt="sweets" />
   <img src={logo} className="donut" alt="logo" />
   </Button>
-  <div className='input-wrap'>
+ {uId!=='admin' ? <div className='input-wrap'>
    <SearchIcon/>
    <label htmlFor="product-search" id="input-label">Product Search</label>
  <input id="searchBar" type="text" className="searchBar" placeholder='Search For Your Cravings'  color='inherit'  onChange={(e)=>{handleInput(e);navigate('/search');}} />
  <ClearIcon className="clear" onClick={(e)=>{handleClearBtn(e);navigate('/');}}/>
-</div>
+</div> : null}
   </Toolbar>
   <Toolbar className='head-end'>
   {uId!== "" ? <Button sx={{fontWeight:"bolder",fontSize:"16px"}} color="inherit" onClick={()=>navigate('/user')}>{uId}</Button> : null}
   {uId==="" ? <Button color="inherit" onClick={handleShow}><PersonRoundedIcon /></Button> : null}
      
-     <Button color="inherit" sx={{fontWeight:"bolder",fontSize:"16px"}} onClick={()=>navigate('/menu')}>Menu</Button>
-     <Button color="inherit" sx={{fontWeight:"bolder",fontSize:"16px"}} onClick={()=>navigate('/help')}>Help</Button>
-    
-    
+    {uId!=='admin' ? <Button color="inherit" sx={{fontWeight:"bolder",fontSize:"16px"}} onClick={()=>navigate('/menu')}>Menu</Button>:null}
 
-    {['bottom'].map((placement) => (
+    {uId!=='admin' ?   <Button color="inherit" sx={{fontWeight:"bolder",fontSize:"16px"}} onClick={()=>navigate('/help')}>Help</Button> :null}
+    {uId!=='admin' ? ['bottom'].map((placement) => (
        <OverlayTrigger
           trigger="click"
           key={placement}
@@ -218,7 +217,7 @@ useEffect(()=>{
           }
         >
     <IconButton aria-label="cart-basket" color="inherit" onClick=""><Badge badgeContent={itemCount} color="error"><ShoppingCartIcon sx={{marginRight:"10px"}}/></Badge></IconButton>
-    </OverlayTrigger> ))}
+    </OverlayTrigger> )):null}
     {uId !== "" ? <Button color='inherit'onClick={logout}><LogoutIcon/></Button> : null}
     </Toolbar>
     
@@ -237,19 +236,19 @@ useEffect(()=>{
    
    
     <Routes>
-    <Route path="/" element={<Home menuList={menuList} itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem} userId={userId} uId={uId}/>} />
-    <Route path="/login" element={<Login userId={userId} setUserId={setUserId} uId={uId} setShowOffC={setShowOffC}/>} />
-    <Route path="/menu" element={<ItemMenu itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem} menuList={menuList} userId={userId} uId={uId}/> } />
-    <Route path="/help" element={<HelpFaq />} />
-    {uId!=="" ? <Route path="/user" element={<UserDetails userName1={userName1} uId={uId}/>} /> : null}
-    <Route path="/user/addresses" element={<Address userName1={userName1}/>} />
-    <Route path="/user/orders" element={<Orders userName1={userName1}uId={uId} />} />
-    <Route path="/cart" element={<CartCard />} />
-    <Route path="/checkout" element={<Checkout itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem}  uId={uId} userId={userId} userName1={userName1} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder}/>} />
-    <Route path="/resetpwd" element={<ResetPassword />} />
-    <Route path="/search" element={originalList.map((item)=><Search  item={item} itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem} userId={userId}/>)} />
+    <Route path="/" element={uId!=='admin'? <Home menuList={menuList} itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem} userId={userId} uId={uId}/>:<AddandRemove/>} />
+  <Route path="/login" element={<Login userId={userId} setUserId={setUserId} uId={uId} setShowOffC={setShowOffC}/>} />
+    {uId!=='admin' ? <Route path="/menu" element={<ItemMenu itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem} menuList={menuList} userId={userId} uId={uId}/> } />:null}
+    {uId!=='admin' ? <Route path="/help" element={<HelpFaq />} />:null}
+    {uId!==""&&uId!=='admin' ? <Route path="/user" element={<UserDetails userName1={userName1} uId={uId}/>} /> : null}
+    {uId!=='admin' ? <Route path="/user/addresses" element={<Address userName1={userName1}/>} />:null}
+    {uId!=='admin' ? <Route path="/user/orders" element={<Orders userName1={userName1}uId={uId} />} />:null}
+    {uId!=='admin'? <Route path="/cart" element={<CartCard />} />:null}
+    {uId!=='admin' ? <Route path="/checkout" element={<Checkout itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem}  uId={uId} userId={userId} userName1={userName1} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder}/>} />:null}
+    {uId!=='admin' ? <Route path="/resetpwd" element={<ResetPassword />} style={{marginLeft:'400px'}}/>:null}
+    {uId!=='admin' ? <Route path="/search" element={originalList.map((item)=><Search  item={item} itemCount={itemCount} setItemCount={setItemCount} cartItem={cartItem} setCartItem={setCartItem} userId={userId}/>)} />:null}
    
-    <Route path="/orderconfirmation" element={<OrderConfirmation currentOrder={currentOrder} setCurrentOrder={setCurrentOrder}/>} />
+    {uId!=='admin'? <Route path="/orderconfirmation" element={<OrderConfirmation currentOrder={currentOrder} setCurrentOrder={setCurrentOrder}/>} />:null}
     </Routes>
    
     </div>

@@ -7,8 +7,10 @@ import Col from "react-bootstrap/Col";
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import { useState } from "react";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 function MainMenuCard({item,handleAddToCart,removeButton,removeItem,itemCount,userId,uId}){
-    const {name,price,pic,category,quantitydisplay}=item;
+    const {name,price,pic,category,quantitydisplay,description}=item;
     const [show,setShow]=useState(false);   
     
 return(
@@ -22,8 +24,26 @@ return(
   <p className="item_price">Price : ₹ {price}.00</p>
 <p className="item_quantity">Quantity : {quantitydisplay}</p>
 </Col>
+
 <Col sm={4}>
-<div className="item_pic_disp"><img className="item_pic"src={pic} alt={name}/></div>
+
+{['left'].map((placement) => (
+  <OverlayTrigger
+          trigger="hover"
+          key={placement}
+          rootClose
+        
+          placement={placement}
+          overlay={
+            <Popover className='menu-popover' id={`popover-positioned-${placement}`}>
+            {/* <Popover.Header ><img style={{height:'150px',width:'100%'}} src={pic} alt={name}/></Popover.Header> */}
+              <Popover.Body>{description}</Popover.Body>
+            </Popover> 
+          }
+        >
+      <div className="item_pic_disp"><img className="item_pic"src={pic} alt={name}/></div>
+    </OverlayTrigger>))}
+{/* <div className="item_pic_disp"><img className="item_pic"src={pic} alt={name}/></div> */}
 
 
 <div className="btn_disp"><Button onClick={()=>{if(uId!==""){handleAddToCart(item);}else{setShow(true); window.scrollTo(0, 0)}}} variant="contained">Add to Cart</Button></div>

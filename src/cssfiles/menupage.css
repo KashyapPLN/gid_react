@@ -7,6 +7,11 @@
     width:160px;
     border-radius: 5%;
   }
+  .item_pic:hover{
+    height:200px;
+    width:260px;
+    border-radius: 5%;
+  }
   .item_pic_disp{
     display: flex;
     justify-content:flex-end;
@@ -45,6 +50,12 @@
     
     
   }
+.menu-popover{
+  font-weight: 700;
+  font-family: 'Roboto';
+  
+}
+
   .rootList{
     margin-top: 100px;
    
