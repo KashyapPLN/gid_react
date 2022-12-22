@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { API } from '../global';
 function ResetPassword() {
     const [userName, setUserName]=useState('');
     const [changedPwd, setChangedPwd]=useState('');
@@ -18,7 +19,7 @@ if(changedPwd===confirmChangedPwd&&changedPwd!==''){
     const rPwd={
         password:changedPwd
     }
-    fetch(`http://localhost:4000/user/update-password/${userName}`,{
+    fetch(`${API}/user/update-password/${userName}`,{
         method : 'PUT',
         body :JSON.stringify(rPwd),
         headers:{ 'Content-Type': 'application/json',
