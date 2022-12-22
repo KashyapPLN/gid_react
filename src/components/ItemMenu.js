@@ -7,6 +7,7 @@ import { CartCard } from "./CartCard";
 import { CategoryFilterList } from "./CategoryFilterList";
 import MainMenuCard from "./MainMenuCard";
 import { useCallback } from 'react';
+import { API } from '../global';
 
 export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem,menuList,userId,uId}) {
   const cartObj = {
@@ -14,7 +15,7 @@ export default function ItemMenu({itemCount,setItemCount,cartItem,setCartItem,me
     "item": cartItem}
 async function createCart(){
 
-  await fetch("http://localhost:4000/cart",{
+  await fetch(`${API}/cart`,{
     method : 'POST',
     body :JSON.stringify(cartObj),
    headers:{ 'Content-Type': 'application/json',
@@ -32,7 +33,7 @@ console.log('filtered array is fgrthtr',filteredArray);
   setCartItem(filteredArray);
   console.log('filtered array is cart',cartItem);
   console.log('cart item when qty 1',cartItem);
-  await fetch(`http://localhost:4000/cart/${uId}_cart`,{
+  await fetch(`${API}/cart/${uId}_cart`,{
     method : 'POST',
     body :JSON.stringify(filteredArray),
    headers:{ 'Content-Type': 'application/json',
@@ -68,7 +69,7 @@ console.log('filtered array is fgrthtr',filteredArray);
   }
   console.log(JSON.stringify(cartItem));
 if(item.qty>0){
- fetch(`http://localhost:4000/cart/${uId}_cart`,{
+ fetch(`${API}/cart/${uId}_cart`,{
     method : 'POST',
      body :JSON.stringify(cartItem),
     headers:{ 'Content-Type': 'application/json',
