@@ -6,6 +6,7 @@ import { useState,useEffect } from "react";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import axios from "axios";
+import { API } from '../global';
 export default function Address({userName1,uId,parentCallback}){
  
     const [name,setName]=useState("");
@@ -35,7 +36,7 @@ const handleSubmit = (e) => {
     }
         console.log(addressObj,"is addressobject")
 
-        fetch(`http://localhost:4000/user/address`,{
+        fetch(`${API}/user/address`,{
           method : 'POST',
            body :JSON.stringify(addrObj),
           headers:{ 'Content-Type': 'application/json',
@@ -60,7 +61,7 @@ function handleEdit(e){
     }
         console.log(addressObj,"is addressobject")
 
-        fetch(`http://localhost:4000/user/${uId}_address`,{
+        fetch(`${API}/user/${uId}_address`,{
           method : 'PUT',
            body :JSON.stringify(addrObj),
           headers:{ 'Content-Type': 'application/json',
@@ -71,7 +72,7 @@ function handleEdit(e){
 }
 
  useEffect(()=>{
-  axios.get(`http://localhost:4000/user/${uId}_address`)
+  axios.get(`${API}/user/${uId}_address`)
    .then((res)=>{console.log("address res is",res.data);
   // setDefaultAddr(res.data);
   setName(res.data.address.name);
