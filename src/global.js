@@ -1,1 +1,1 @@
-export const API= `https://kash-guvi-practice.herokuapp.com`;
+export const API= `https://fsd-project1-node.vercel.app`;
