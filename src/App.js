@@ -111,7 +111,7 @@ document.getElementById("searchBar").value = "";
 const [uId,setUId]=useState('');
   console.log("token value is",getCookie("token"));
    if(getCookie("token")!==undefined){
-  fetch(`http://localhost:4000/user/validateuser/`+getCookie("token"))
+  fetch(`${API}/user/validateuser/`+getCookie("token"))
   .then((data)=>data.json())
   .then((val)=>{console.log(val);setUId(val.user.id)});
 console.log("uid is",uId);
@@ -141,7 +141,7 @@ const [callCartApi,setCallCartApi] = useState(true);
 useEffect(()=>{
 
   if(uId!==''&&cartItem.length<1&&callCartApi){
-    fetch(`http://localhost:4000/cart/${uId}_cart`)
+    fetch(`${API}/cart/${uId}_cart`)
     .then((data)=>data.json())
      .then((res)=>{
       setCartItem(res.item);

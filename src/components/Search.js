@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import { useState } from "react";
+import { API } from '../global';
 
 export function Search({ item,itemCount,setItemCount,cartItem,setCartItem,userId,uId }) {
 
@@ -15,7 +16,7 @@ const cartObj = {
   "item": cartItem}
 async function createCart(){
 
-await fetch("http://localhost:4000/cart",{
+await fetch(`${API}/cart`,{
   method : 'POST',
   body :JSON.stringify(cartObj),
  headers:{ 'Content-Type': 'application/json',
@@ -24,7 +25,7 @@ await fetch("http://localhost:4000/cart",{
 .then((d)=>console.log("successfully created",d))
 }
 async function cartInDb(){
-await fetch(`http://localhost:4000/cart/${userId}_cart`,{
+await fetch(`${API}/cart/${userId}_cart`,{
   method : 'POST',
   body :JSON.stringify(cartItem),
  headers:{ 'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ console.log(exists);
   // console.log("Search"+item)
 }
 
-fetch(`http://localhost:4000/cart/${userId}_cart`,{
+fetch(`${API}/cart/${userId}_cart`,{
   method : 'POST',
    body :JSON.stringify(cartItem),
   headers:{ 'Content-Type': 'application/json',

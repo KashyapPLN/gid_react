@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import firebase from './firebase';
+import { API } from '../global';
 
 const loginFormValidationSchema = yup.object({
   uName: yup.string().required("Please Enter UserName"),
@@ -79,7 +80,7 @@ function SignUpForm({message,setMessage,show,setShow,setErrMsg}){
   const {handleChange,handleBlur,handleSubmit,touched,values,errors} = useFormik({
 initialValues:{phoneNumber :"",password :"",email:"",userName:"" },
     validationSchema : signUpFormValidationSchema,
-    onSubmit : async (values) => {await fetch("http://localhost:4000/user/signup",{
+    onSubmit : async (values) => {await fetch(`${API}/user/signup`,{
       method : 'POST',
       body :JSON.stringify(values),
       headers:{ 'Content-Type': 'application/json',
@@ -172,7 +173,7 @@ function LoginForm({userId,setUserId,setMessage,setShow,setErrMsg,otpSuccess,set
   const {handleChange,handleBlur,handleSubmit,touched,values,errors} = useFormik({
     initialValues:{uName :"",password :"" },
     validationSchema : loginFormValidationSchema,
-    onSubmit :  async (values) => {await fetch("http://localhost:4000/user/login",{
+    onSubmit :  async (values) => {await fetch(`${API}/user/login`,{
       method : 'POST',
       body :JSON.stringify(values),
       headers:{ 'Content-Type': 'application/json',

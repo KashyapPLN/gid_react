@@ -3,7 +3,7 @@ import * as React from "react";
 import axios from "axios";
 
 import { useState,useEffect } from "react";
-
+import { API } from '../global';
 import AllOrders from "./AllOrders";
 
 export default function Orders({displayOrders,userName1,uId}){
@@ -13,7 +13,7 @@ export default function Orders({displayOrders,userName1,uId}){
     useEffect(()=>{
      
         
-          axios.get(`http://localhost:4000/user/orders/${uId}`)
+          axios.get(`${API}/user/orders/${uId}`)
            .then((res)=>{console.log("orders",res);
            const reversed = res.data.slice().reverse();
         setOrders(reversed);

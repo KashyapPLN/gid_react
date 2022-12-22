@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
+import { API } from '../global';
 
 function AddandRemove() {
     const [id,setId] =useState(0);
@@ -46,7 +47,7 @@ const [temp,setTemp]=useState(0);
                }, 3000);
 
 function addProduct(e){
-    fetch(`http://localhost:4000/desserts/${id}`)
+    fetch(`${API}/desserts/${id}`)
     .then((data)=>data.json())
     .then((val)=>setTemp(val.id))
     if(id!==0&&id!==temp){
@@ -64,7 +65,7 @@ function addProduct(e){
         description:description
 }
 
-fetch(`http://localhost:4000/desserts`,{
+fetch(`${API}/desserts`,{
     method : 'POST',
      body :JSON.stringify([obj]),
     headers:{ 'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ function editProduct(e){
         description:description1
 }
 
-fetch(`http://localhost:4000/desserts/${parseInt(id)}`,{
+fetch(`${API}/desserts/${parseInt(id)}`,{
     method : 'PUT',
      body :JSON.stringify(obj),
     headers:{ 'Content-Type': 'application/json',
@@ -101,14 +102,14 @@ fetch(`http://localhost:4000/desserts/${parseInt(id)}`,{
 }
 function removeProduct(e){
     if(id!==0){
-    fetch(`http://localhost:4000/desserts/${id}`,{method:'DELETE'})
+    fetch(`${API}/desserts/${id}`,{method:'DELETE'})
     .then((data)=>data.json())
      .then((res)=>{console.log(res.acknowledged,'deleted');setDeleteStatus(res.acknowledged)})
 }
 }
 
 function getProduct(){
-    fetch(`http://localhost:4000/desserts/${id}`)
+    fetch(`${API}/desserts/${id}`)
     .then((data)=>data.json())
     .then((val)=>{
         setName1(val.name);

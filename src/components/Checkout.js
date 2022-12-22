@@ -11,6 +11,7 @@ import GooglePayButton from '@google-pay/button-react';
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 import Footer from './Footer';
+import { API } from '../global';
 
 export default function Checkout({cartItem,itemCount,setItemCount,setCartItem,userName1,uId}){
     const [payment, setPayment] = useState(false);
@@ -92,7 +93,7 @@ export function Payment({cartItem,itemCount,setItemCount,setCartItem,payment,use
     const unique_id = uuid();
     const small_id = unique_id.slice(0,8)
     function deleteCart(){
-        fetch(`http://localhost:4000/cart/${uId}_cart`,{method:'DELETE'})
+        fetch(`${API}/cart/${uId}_cart`,{method:'DELETE'})
         .then((data)=>data.json())
          .then((res)=>console.log(res,'deleted'))
 
@@ -105,7 +106,7 @@ export function Payment({cartItem,itemCount,setItemCount,setCartItem,payment,use
         "orderItem": cartItem,
         "orderDateTime" : Date().toLocaleString()
     };
-     fetch("http://localhost:4000/user/orders",{
+     fetch(`${API}/user/orders`,{
         method : 'POST',
          body :JSON.stringify(orderDetails),
        headers:{ 'Content-Type': 'application/json',
