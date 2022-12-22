@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { API } from '../global';
 function Cards({homemenu,cartItem,setCartItem,itemCount,setItemCount,userId,uId})
  {
   const [isShown, setIsShown] = useState(false);
@@ -17,7 +18,7 @@ function Cards({homemenu,cartItem,setCartItem,itemCount,setItemCount,userId,uId}
     "item": cartItem}
 async function createCart(){
 
-  await fetch("http://localhost:4000/cart",{
+  await fetch(`${API}/cart`,{
     method : 'POST',
     body :JSON.stringify(cartObj),
    headers:{ 'Content-Type': 'application/json',
@@ -26,7 +27,7 @@ async function createCart(){
   .then((d)=>console.log("successfully created",d))
 }
 async function cartInDb(){
-  await fetch(`http://localhost:4000/cart/${uId}_cart`,{
+  await fetch(`${API}/cart/${uId}_cart`,{
     method : 'POST',
     body :JSON.stringify(cartItem),
    headers:{ 'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ console.log(exists);
     setCartItem([...cartItem]);
 
 }
-fetch(`http://localhost:4000/cart/${uId}_cart`,{
+fetch(`${API}/cart/${uId}_cart`,{
   method : 'POST',
    body :JSON.stringify(cartItem),
   headers:{ 'Content-Type': 'application/json',
