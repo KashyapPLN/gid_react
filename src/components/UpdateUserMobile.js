@@ -2,6 +2,7 @@
 import { Button, TextField } from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
+import { API } from '../global';
 function UpdateUserMobile({uId}) {
 const [updated,setUpdated]=useState(false);
 
@@ -13,7 +14,7 @@ console.log('uId in update acc',uId);
             phoneNumber:phone,
             
         }
-        fetch(`http://localhost:4000/user/update-phone/${uId}`,{
+        fetch(`${API}/user/update-phone/${uId}`,{
         method : 'PUT',
         body :JSON.stringify(obj),
         
